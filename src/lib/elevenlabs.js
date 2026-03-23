@@ -1,5 +1,5 @@
 const XI_API_KEY = import.meta.env.VITE_ELEVENLABS_API_KEY;
-const XI_MODEL = "eleven_multilingual_v2";
+const XI_MODEL = "eleven_v3";
 
 export async function generateSpeechBlob(text, voiceId) {
   const resp = await fetch(
