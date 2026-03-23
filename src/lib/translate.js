@@ -17,9 +17,15 @@ export async function translatePages(pages, languageCode) {
       messages: [
         {
           role: "user",
-          content: `You are translating a children's picture book for young children (ages 1-5). ${LANG_INSTRUCTIONS[languageCode]}
+          content: `You are translating a children's picture book meant to be read aloud to young children (ages 1-5). ${LANG_INSTRUCTIONS[languageCode]}
 
-Keep the language simple, warm, and natural. Preserve the rhythm and feeling of the original. This text will be read aloud by a text-to-speech system, so write exactly how it should be spoken.
+CRITICAL translation rules:
+- Use the SIMPLEST words possible. Think 3rd grade reading level in the target language.
+- Keep sentences SHORT — one idea per sentence. Break long sentences into two if needed.
+- Use everyday words a child would know. Avoid literary, formal, or bookish language.
+- Write the way a loving parent would actually speak to a small child — warm, gentle, clear.
+- Preserve the story's emotion and rhythm, but always choose the simpler word.
+- This text will be read aloud by a text-to-speech system, so write exactly how it should be spoken naturally.
 
 Return ONLY a JSON array of strings, one per page. No other text, no markdown.
 
