@@ -4,7 +4,7 @@ import { P, baseBtn, primaryBtn, secondaryBtn, ghostBtn } from "../styles/theme"
 
 export function PagesStep({ pages, setPages, onFinish, onBack }) {
   const [currentText, setCurrentText] = useState("");
-  const { listening, start, stop } = useSpeechRecognition();
+  const { listening, transcribing, start, stop } = useSpeechRecognition();
   const textareaRef = useRef();
 
   const addPage = () => {
@@ -45,8 +45,8 @@ export function PagesStep({ pages, setPages, onFinish, onBack }) {
       <div style={{ background: P.card, borderRadius: 16, padding: 20, boxShadow: P.shadow }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <span style={{ fontSize: 14, color: P.textMuted, fontWeight: 600 }}>Page {pages.length + 1}</span>
-          <button onClick={handleMic} style={{ ...baseBtn, background: listening ? "#FF4444" : P.accentLight, color: listening ? "#fff" : P.accent, padding: "8px 16px", fontSize: 14, borderRadius: 20 }}>
-            {listening ? "⏹ Stop" : "🎤 Dictate"}
+          <button onClick={handleMic} disabled={transcribing} style={{ ...baseBtn, background: listening ? "#FF4444" : transcribing ? P.textMuted : P.accentLight, color: listening || transcribing ? "#fff" : P.accent, padding: "8px 16px", fontSize: 14, borderRadius: 20, opacity: transcribing ? 0.7 : 1 }}>
+            {transcribing ? "⏳ Transcribing..." : listening ? "⏹ Stop" : "🎤 Dictate"}
           </button>
         </div>
         <textarea
